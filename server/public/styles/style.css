@@ -1,0 +1,23 @@
+#done{
+  background: rgb(98, 245, 98);
+  text-decoration: transparent;
+  color: black
+}
+html,body{
+    background-color: rgb(253, 252, 184);
+     color: black;
+     padding: 35px;
+}  
+table{
+    position: fixed;
+}
+#notdone{
+    background:transparent;
+}
+h1{
+    font-family: 'Times New Roman', Times, serif
+}
+img{
+    width:25px;
+    height:25px;
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="vendors/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="vendors/sweetalert.min.js"></script>
+    <script src="vendors/angular.min.js"></script>
+    <script src="scripts/client.js"></script>
+
+    <title>MY TO DO LIST</title>
+</head>
+
+<body ng-app="ToDoApp">
+    <div ng-controller="ToDoController as vm">
+        <header>
+            <!-- think of an image to source in here maybe -->
+            <h1 class="text-center badge-primary">My To Do List</h1>
+        </header>
+        <input class="form-group-row w-50" ng-model="vm.task.description" placeholder="Add new task">
+        <input class="form-group-row w-25" ng-model="vm.task.date" placeholder="Due Date">
+        <button class="btn-primary" ng-click="vm.addTask(vm.task)">Add Task!</button>
+        <br>
+        <br>
+        <input class="form-group-row w-25" ng-model="search" placeholder="Search tasks...">
+        <br>
+        <br>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Tasks I need to get done!</th>
+                    <th>Due Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="task in vm.tasks | filter : search | orderBy: 'completed'" >
+
+                    <td class="done" id="done" ng-if="task.completed">
+                        <span>
+                            <img ng-src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd3HD2Y2fkKAxhGdryZVkddi0p6YbLlLkK2xMZaEkVx63aD08U">
+                        </span>Complete</td>
+
+
+
+                    <td class="done" id="notdone" ng-if="!task.completed">Uncomplete</td>
+                    <td ng-if="!task.showEdit">{{task.description}}</td>
+                    <td ng-if="task.showEdit">
+                        <input class="form-group-row w-75" ng-model="task.description" placeholder="Edit task">
+                    </td>
+                    <td ng-if="!task.showEdit">{{task.date}}</td>
+                    <td ng-if="task.showEdit">
+                        <input class="form-group-row w-50" ng-model="task.date" placeholder="Changed Date">
+                    </td>
+                    <td ng-if="!task.showEdit">
+                        <button class="btn-outline-warning" ng-click="vm.setEdit(task)">EDIT</button>
+                    </td>
+                    <td ng-if="task.showEdit">
+                        <button class="btn-outline-primary" ng-click="vm.editTask(task)">Done</button>
+                    </td>
+                    <td>
+                        <button class="btn-outline-danger" ng-click="vm.deleteTask(task._id)">Delete</button>
+                    </td>
+                    <td>
+                        <button class="btn-outline-success" ng-click="vm.completeTask(task)">Completed!</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+
+
+
+    </div>
+</body>
+
+</html>
